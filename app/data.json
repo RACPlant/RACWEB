@@ -1,0 +1,29 @@
+[
+  {
+    "id": 0,
+    "port": "/dev/ttyACM0",
+    "radiation": "r1",
+    "temperature": "t1",
+    "slots": [
+      {
+        "botanical_name": "Abelia chinensis",
+        "name": "Pimenteira",
+        "pump": "p1",
+        "humidity": "h1"
+      },
+      {
+        "botanical_name": "Abelia floribunda",
+        "name": "Samambaia",
+        "pump": "p2",
+        "humidity": "h2"
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "port": "/dev/ttyACM1",
+    "radiation": "r2",
+    "temperature": "t2",
+    "slots": []
+  }
+]

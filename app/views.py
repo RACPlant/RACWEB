@@ -1,40 +1,18 @@
 from app import app
 from flask import abort, jsonify
+import model
 
 
 @app.route("/", methods=['GET'])
 def welcome():
     return jsonify({'msg': 'Bem vindos!'})
 
-# TODO: criar endpoint referente ao raspberry
-#
-# 'position': 'front-yard',  # lat long?
-# 'label': 'Front Yard Station',
-# 'started_at': '2019-11-05 10:50:31'
-#
-# 'position': 'back-yard',  # lat long?
-# 'label': 'Front Yard Station',
-# 'started_at': '2019-11-05 10:50:31'
+
 @app.route("/raspberry/<path:rasp_id>/arduino/", methods=['GET'])
 def list_arduino(rasp_id):
-    raspberry_id = __raspberry_params(rasp_id)
-    # TODO: filter by specific raspberry_id
-    return jsonify(
-        [
-            {
-                'id': '0',
-                'port': '/dev/ttyACM0',
-                'radiation': 'r1',
-                'temperature': 't1'
-            },
-            {
-                'id': '1',
-                'port': '/dev/ttyACM1',
-                'radiation': 'r2',
-                'temperature': 't2'
-            }
-        ]
-    )
+    __raspberry_params(rasp_id)
+    objs = model.Arduino.all()
+    return jsonify(objs)
 
 
 @app.route("/raspberry/<path:rasp_id>/arduino/<path:ard_id>/slots/", methods=['GET'])
@@ -64,11 +42,14 @@ def __arduino_params(ard_id):
     if not ard_id or not ard_id.isnumeric():
         abort(404)
         return
-    return int(ard_id)
+    c_id = int(ard_id)
+    if not model.Arduino.check_id(c_id):
+        abort(404)
+        return
+    return int(c_id)
 
 
 def __raspberry_params(rasp_id):
     if not rasp_id or not rasp_id.isnumeric():
         abort(404)
         return
-    return int(rasp_id)
