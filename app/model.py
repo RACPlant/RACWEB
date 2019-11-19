@@ -1,7 +1,9 @@
+import os
 import helper
 
 
-DATA = 'data.json'
+BASE_DIR = os.path.dirname(__file__)
+DATA = os.path.join(BASE_DIR, 'data.json')
 
 
 class Arduino:
@@ -32,7 +34,7 @@ class Arduino:
     @classmethod
     def all(cls):
         data = helper.json_reader(DATA)
-        return [Arduino(arduino.ard_id).load() for arduino in data]
+        return [Arduino(arduino['id']).load() for arduino in data]
 
 
 class Slot:

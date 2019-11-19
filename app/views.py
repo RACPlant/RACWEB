@@ -12,7 +12,7 @@ def welcome():
 def list_arduino(rasp_id):
     __raspberry_params(rasp_id)
     objs = model.Arduino.all()
-    return jsonify(objs)
+    return jsonify([obj.__dict__ for obj in objs])
 
 
 @app.route("/raspberry/<path:rasp_id>/arduino/<path:ard_id>/slots/", methods=['GET'])
