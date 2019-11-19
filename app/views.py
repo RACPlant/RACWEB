@@ -22,20 +22,16 @@ def list_arduino(rasp_id):
     return jsonify(
         [
             {
-                'ard-01': {
-                    'id': '0',
-                    'port': '/dev/tty/ACM0',
-                    'radiation': 'r1',
-                    'temperature': 't1'
-                }
+                'id': '0',
+                'port': '/dev/ttyACM0',
+                'radiation': 'r1',
+                'temperature': 't1'
             },
             {
-                'ard-02': {
-                    'id': '1',
-                    'port': '/dev/tty/ACM1',
-                    'radiation': 'r2',
-                    'temperature': 't2'
-                }
+                'id': '1',
+                'port': '/dev/ttyACM1',
+                'radiation': 'r2',
+                'temperature': 't2'
             }
         ]
     )
@@ -47,20 +43,20 @@ def list_slots(rasp_id, ard_id):
     arduino_id = __arduino_params(ard_id)
     # TODO: access data from specified arduino and retrieve associated slots
     return jsonify(
-        [
-            {
+        {
+            "0": {
                 'botanical-name': 'Abelia chinensis',
                 'name': 'Pimenteira',
                 'pump': 'p1',
                 'humidity': 'h1'
             },
-            {
+            "1": {
                 'botanical-name': 'Abelia floribunda',
                 'name': 'Samambaia',
                 'pump': 'p2',
                 'humidity': 'h2'
             }
-        ]
+        }
     )
 
 
