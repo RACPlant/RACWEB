@@ -45,13 +45,13 @@ def list_slots(rasp_id, ard_id):
     return jsonify(
         {
             "0": {
-                'botanical-name': 'Abelia chinensis',
+                'botanical_name': 'Abelia chinensis',
                 'name': 'Pimenteira',
                 'pump': 'p1',
                 'humidity': 'h1'
             },
             "1": {
-                'botanical-name': 'Abelia floribunda',
+                'botanical_name': 'Abelia floribunda',
                 'name': 'Samambaia',
                 'pump': 'p2',
                 'humidity': 'h2'
